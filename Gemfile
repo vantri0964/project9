@@ -61,8 +61,11 @@ group :test do
 end
 group :development, :test do
   gem 'sqlite3'
-  gem 'byebug',  '9.0.6', platform: :mri
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
+# group :production do
+#   gem 'pg', '0.20.0'
+# end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
