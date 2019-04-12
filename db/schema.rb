@@ -10,17 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_181418) do
+ActiveRecord::Schema.define(version: 2019_04_13_070243) do
 
-  create_table "user1s", force: :cascade do |t|
-    t.string "name"
-    t.string "pass"
+  create_table "users", force: :cascade do |t|
     t.string "email"
-    t.datetime "ngayDK"
-    t.string "point"
-    t.string "makh"
+    t.string "name"
+    t.string "pass_word"
+    t.integer "point"
+    t.string "code"
     t.integer "confirm"
-    t.integer "rale"
+    t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

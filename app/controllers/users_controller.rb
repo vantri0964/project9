@@ -2,6 +2,6 @@ class UsersController < ApplicationController
   def new
   end
   def show
-  	@user=User1.all
+  	@user=User.all
   end
 end
