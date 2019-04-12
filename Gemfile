@@ -59,13 +59,17 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
-group :development, :test do
-  gem 'sqlite3'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
+# group :development, :test do
+#   gem 'sqlite3'
+#   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+# end
+
 group :production do
   gem 'pg', '0.20.0'
 end
-
+group :development, :test do
+  gem 'sqlite3', '1.3.13'
+  gem 'byebug',  '9.0.6', platform: :mri
+end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
