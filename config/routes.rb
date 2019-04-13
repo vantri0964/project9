@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resource :users
-  root 'users#new'
+  root 'users#show'
   get '/show', to:'users#show'
 end
