@@ -18,10 +18,11 @@ ActiveRecord::Schema.define(version: 2019_04_13_070243) do
     t.string "pass_word"
     t.integer "point"
     t.string "code"
-    t.integer "confirm"
+    t.string "confirm"
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "pass_word_confirm"
   end
 
 end

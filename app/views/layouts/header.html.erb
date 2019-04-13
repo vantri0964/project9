@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <%= link_to "T-O", {controller: "users", action: "index"}, class: "nav navbar-brand"%>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
@@ -19,11 +19,11 @@
       </div>
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to controller: "users", action: "show" do %>
+      <li><%= link_to controller: "users", action: "new" do %>
         <span class="glyphicon glyphicon-user"></span> Sign Up</a>
       <% end %>
       </li>
-      <li><%= link_to controller: "users", action: "show" do %>
+      <li><%= link_to controller: "users", action: "new" do %>
         <span class="glyphicon glyphicon-log-in"></span> Login</a>
       <% end %>
       </li>
