@@ -1,28 +1,18 @@
-<h1>List database</h1>
-<table class="table table-striped">
-	<tr >
-		<th>number</th>
-		<th>Email</th>
-		<th>Name</th>
-		<th>PassWord</th>
-		<th>Point</th>
-		<th>confirm</th>
-		<th>role</th>
-		<th>Create Date</th>
-		<th>Controll</th>
-		<th></th>
-	</tr>
-	<% @user.each do |f| %>
-		<tr>
-			<td><%= f.id %></td>
-			<td><%= f.email %></td>
-			<td><%= f.name %></td>
-			<td><%= f.pass_word %></td>
-			<td><%= f.point %></td>
-			<td><%= f.confirm %></td>
-			<td><%= f.role %></td>
-			<td><%= f.created_at %></td>
-			<td><button>delete</button></td>
-		</tr>
-	<%end%>
-</table>
+<% provide(:title, @user.name) %>
+<h1>
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+  <span>- Point: <%= @user.point %></span>
+</h1>
+  <div class="jumbotron">
+    <h1>Bootstrap Tutorial</h1>      
+    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+  </div>
+    <div class="jumbotron">
+    <h1>Bootstrap Tutorial</h1>      
+    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+  </div>
+    <div class="jumbotron">
+    <h1>Bootstrap Tutorial</h1>      
+    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+  </div>
