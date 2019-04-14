@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2019_04_14_080600) do
     t.string "email"
     t.string "name"
     t.string "password"
-    t.integer "point"
+    t.integer "point", default: 25
     t.string "code"
-    t.string "confirm"
-    t.integer "role"
+    t.integer "confirm", default: 0
+    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_confirmation"
