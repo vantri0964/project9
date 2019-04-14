@@ -4,7 +4,7 @@
 		<th>number</th>
 		<th>Email</th>
 		<th>Name</th>
-		<th>PassWord</th>
+		<th>PassWord__digest</th>
 		<th>Point</th>
 		<th>confirm</th>
 		<th>role</th>
@@ -17,12 +17,14 @@
 			<td><%= f.id %></td>
 			<td><%= f.email %></td>
 			<td><%= f.name %></td>
-			<td><%= f.pass_word %></td>
+			<td><%= f.password_digest %></td>
 			<td><%= f.point %></td>
 			<td><%= f.confirm %></td>
 			<td><%= f.role %></td>
 			<td><%= f.created_at %></td>
-			<td><%= link_to 'Trang ca nhan', user_path(f) %></td>
+			<td><%= link_to 'Trang ca nhan', user_path(f), class: "btn btn-primary" %><br/>
+				<%= link_to 'delte' ,f,method: :delete, data: {confirm: 'are you delete'}%>
+			</td>
 
 		</tr>
 	<%end%>

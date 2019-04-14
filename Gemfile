@@ -18,7 +18,7 @@ gem 'bootstrap-sass','~>3.3.7'
 gem 'jquery-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-
+gem 'bcrypt', '~> 3.1.12'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -49,7 +49,9 @@ group :development, :test do
 end
 group :production do
   gem 'pg'
+
 end
+ gem 'rails_12factor'
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
