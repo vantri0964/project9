@@ -7,22 +7,18 @@
   <div class="form-group">
   	<%= f.label :name %>
   	<%= f.text_field :name, class: "form-control" %>
-  	<span class="error"><%=@user.errors.full_messages[0]%></span>
   </div>
   <div class="form-group">
   	<%= f.label :email %>
   	<%= f.email_field :email, class: "form-control" %>
-  	<span class="error"><%=@user.errors.full_messages[1]%></span>
   </div>
   <div class="form-group">
-	<%= f.label :pass_word %>
-	<%= f.password_field :pass_word ,class: "form-control" %>
-	<span class="error"><%=@user.errors.full_messages[2]%></span>
+	<%= f.label :password %>
+	<%= f.password_field :password ,class: "form-control" %>
   </div>
   <div class="form-group">
-	<%= f.label :pass_word_confirm %>
-	<%= f.password_field :pass_word_confirm,class: "form-control" %>
-	<span class="error"><%=@user.errors.full_messages[3]%></span>
+	<%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation,class: "form-control" %>
   </div>
 	<%= f.submit "create acount",class: "btn btn-primary"%>
   <%end%>

@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_13_070243) do
+ActiveRecord::Schema.define(version: 2019_04_14_080600) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "name"
-    t.string "pass_word"
+    t.string "password"
     t.integer "point"
     t.string "code"
     t.string "confirm"
     t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "pass_word_confirm"
+    t.string "password_confirmation"
+    t.string "password_digest"
   end
 
 end

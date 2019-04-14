@@ -18,15 +18,30 @@
         </div>
       </div>
     </form>
+    <% if logged_in? %>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Acount
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", current_user %></li>
+                  <li><%= link_to "setting", '#'%></li>
+                  <hr>
+                  <li><%= link_to "logout",logout_path,method: :delete, data:{confirm: "are you logout ?"} %></li>
+                </ul>
+        </li>
+      </ul>
+    <%else%>
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to controller: "users", action: "new" do %>
         <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-      <% end %>
+          <% end %>
       </li>
-      <li><%= link_to controller: "users", action: "new" do %>
+      <li><%= link_to controller: "sessions", action: "new" do %>
         <span class="glyphicon glyphicon-log-in"></span> Login</a>
       <% end %>
       </li>
     </ul>
+  <%end%>
   </div>
 </nav>
