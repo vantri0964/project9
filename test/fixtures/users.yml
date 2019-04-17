@@ -17,3 +17,12 @@ two:
   code: MyString
   confirm: 1
   role: 1
+michael:
+  email: vantri.dev@gmail.com
+  name: Lê Văn Trí
+  pass_word: 123456
+  point: 1000
+  code: MyString
+  confirm: 1
+  role: 1
+  password_digest: <%= User.digest('password') %>

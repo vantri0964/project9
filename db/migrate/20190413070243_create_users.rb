@@ -9,7 +9,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.integer :confirm
       t.integer :role
       t.string :password_confirmation
-      t.string :password_digest
       t.timestamps
     end
   end
