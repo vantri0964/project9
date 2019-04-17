@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :code
       t.integer :confirm
       t.integer :role
-
+      t.string :password_confirmation
       t.timestamps
     end
   end
