@@ -1,0 +1,10 @@
+<h1>Share_document</h1>
+
+<p>Hi <%= @user.name %>,</p>
+
+<p>
+Welcome to the Share_document_of_Vantri! Click on the link below to activate your account:
+</p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>
