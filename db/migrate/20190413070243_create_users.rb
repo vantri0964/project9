@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :name
       t.string :password
-      t.integer :point
+      t.integer :point, default: 25
       t.string :code
       t.integer :confirm
       t.integer :role
