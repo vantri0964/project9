@@ -10,21 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_175622) do
+ActiveRecord::Schema.define(version: 2019_04_26_172313) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "name"
     t.string "password"
-    t.integer "point", default: 25
+    t.integer "point"
     t.string "code"
-    t.integer "confirm", default: 0
-    t.integer "role", default: 0
+    t.integer "confirm"
+    t.integer "role"
+    t.string "password_confirmation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_confirmation"
     t.string "password_digest"
     t.string "remember_digest"
+    t.boolean "admin", default: false
   end
 
 end
