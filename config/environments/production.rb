@@ -86,13 +86,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   host = 'https://boiling-fjord-93597.herokuapp.com'
-  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.default_url_options = { host: host,protocol: 'https' }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
+    :address        => 'smtp.mail.com',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => ENV['aptkey'],
-    :password       => ENV['0964614592'],
+    :user_name      => 'vantri.dev@gmail.com',
+    :password       => '0964614592',
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
