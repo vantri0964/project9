@@ -1,18 +1,20 @@
 <% provide(:title, @user.name) %>
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-  <span>- Point: <%= @user.point %></span>
-</h1>
-  <div class="jumbotron">
-    <h1>Bootstrap Tutorial</h1>      
-    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+<div class="row">
+  <div class="col-md-4">
+    <h1>
+      <%= gravatar_for @user %>
+      <%= @user.name %>
+      <span>Point: <%= @user.point %></span>
+    </h1>
   </div>
-    <div class="jumbotron">
-    <h1>Bootstrap Tutorial</h1>      
-    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+  <div class="col-md-8">
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% end %>
   </div>
-    <div class="jumbotron">
-    <h1>Bootstrap Tutorial</h1>      
-    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
-  </div>
+</div>
+
