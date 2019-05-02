@@ -88,7 +88,7 @@ Rails.application.configure do
   host = 'https://boiling-fjord-93597.herokuapp.com'
   config.action_mailer.default_url_options = { host: host,protocol: 'https' }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.mail.com',
+    :address        => 'smtp.gmail.com',
     :port           => '587',
     :authentication => :plain,
     :user_name      => 'vantri.dev@gmail.com',

@@ -3,7 +3,6 @@
   get 'password_resets/edit'
   get 'member/index'
   get 'sessions/new'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'product#index'
   get '/product', to: 'product#index'
@@ -16,8 +15,13 @@
   get 'document', to:"post_documents#index"
   get '/microposts', to:"post_documents#index"
   delete '/logout', to: 'sessions#destroy'
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
 end
