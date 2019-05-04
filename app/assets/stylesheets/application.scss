@@ -133,3 +133,20 @@ span.picture {
   padding: 0;
 }
 */
+
+/*image user*/
+.user{
+  width: 100px;
+  height: 100px;
+}
+.user_header{
+  width:35px;
+  height:35px;
+}
+.user_header_not{
+  .gravatar{
+  width: 30px;
+  height:30px;
+  border-radius: 20px;
+  }
+}

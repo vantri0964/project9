@@ -20,12 +20,17 @@
 	<%= f.label :password_confirmation %>
 	<%= f.password_field :password_confirmation,class: "form-control" %>
   </div>
+  <div class="form-group">
+    <%= image_tag "#{current_user.picture.url}", class: "img-circle user" %>
+    <%= f.file_field :picture %>
+  </div>
 	<%= f.submit "save acount",class: "btn btn-primary"%>
   <%end%>
-  <div class="gravatar_edit">
+
+<!--   <div class="gravatar_edit">
       <%= gravatar_for @user %>
       <a href="http://gravatar.com/emails" target="_blank">change</a>
-    </div>
+  </div> -->
  </div>
 </div>
 

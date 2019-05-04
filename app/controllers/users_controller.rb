@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def new
   	@user=User.new
   end
+
   def create
   	@user=User.new(user_params)
   	if @user.save
@@ -15,9 +16,11 @@ class UsersController < ApplicationController
   		render 'new'
   	end
   end
+
   def edit
     @user=User.find(params[:id])
   end
+
   def update
     @user=User.find(params[:id])
     if @user.update_attributes(user_params)
@@ -27,13 +30,20 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
+
   def index
-  	@user=User.all
+  	@user = if params[:name]
+    User.where("name LIKE ?", "%#{params[:name]}%")
+    else
+    User.all
+    end
   end
+
   def show
   	@user=User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page], per_page: 5)
   end
+
   def destroy
   	@user=User.find(params[:id])
   	if @user.destroy
@@ -61,7 +71,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-      params.require(:user).permit(:name, :email, :password,:password_confirmation)
+      params.require(:user).permit(:name, :email, :password,:password_confirmation, :picture)
   end
 
   def correct_user
