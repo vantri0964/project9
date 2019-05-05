@@ -1,23 +1,17 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <%= link_to "T-O", {controller: "users", action: "index"}, class: "nav navbar-brand"%>
+      <%= link_to "Share-IT",product_path, class: "nav navbar-brand"%>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Lập Trình</a></li>
+      <li><a href="#">Ngoại Ngữ</a></li>
+      <li><%= link_to "Document", alldocument_path %></li>
       <li><%= link_to "Member", member_path %></li>
     </ul>
-    <form class="navbar-form navbar-left" action="/action_page.php">
-      <div class="form-group">
-        <%= form_tag(url: '/home', method: :get) do %>
-          <%= text_field_tag :name %>
-          <%= submit_tag "search", class: "btn btn-default" %>
-        <% end %>
-      </div>
-    </form>
     <% if logged_in? %>
     <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "New Share", document_path %></li>
         <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <% if current_user.picture? %>
@@ -31,6 +25,9 @@
                 <% end %>
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                  <% if current_user.admin? %>
+                     <li><%= link_to "Admin", admin_users_path %></li>
+                  <% end %>
                   <li><%= link_to "Profile", current_user %></li>
                   <li><%= link_to "setting", edit_user_path(current_user) %></li>
                   <hr>

@@ -17,9 +17,13 @@ class MicropostsController < ApplicationController
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || document_path
   end
+
+  def show
+    @showDoc = Micropost.find_by(id:params[:id])
+  end
   private
     def microposts_params
-      params.require(:micropost).permit(:content,:picture)
+      params.require(:micropost).permit(:content,:picture, :attachment,:typemicropost_id, :title)
     end
 
     def correct_user

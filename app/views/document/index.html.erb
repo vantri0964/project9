@@ -1,0 +1,29 @@
+<div class="col-md-12">
+  <% @document.each do |d| %>
+  <div class="col-sm-3 col-xs-12 document">
+    <div class="panel panel-default text-center">
+      <div class="panel-heading">
+        <% if d.typemicropost.name == "Ngoai Ngu" %>
+          <%= image_tag 'ngoaingu.png', class: "image-document" %>
+        <% else %>
+          <%= image_tag 'laptrinh.png', class: "image-document" %>
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <p class="content-document"><b><%= d.title %></b></p>
+        <p>
+          <% if d.user.admin? %>
+          <span>Admin</span>
+          <% else %>
+          <span>Member</span>
+          <% end %>
+        </p>
+      </div>
+      <div class="panel-footer">
+        <%= link_to "detail",d, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<%= will_paginate @member %>

@@ -21,7 +21,8 @@ class User < ApplicationRecord
 
 	  has_secure_password
 	  validates :password, length: { minimum: 6 },allow_nil:true
-
+    enum activated: {activate: true, not_activate: false}
+    scope :ordered_by_name, -> {order(name: :asc) }
 	  #validates :password_confirmation, presence: true
 
 	 def User.digest(string)

@@ -1,14 +1,25 @@
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <li class="wmd-button" id="wmd-bold-button" title="Strong <strong> Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li>
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+  <div class="form-group">
+  <label for="">  Select list:</label>
+  <%= collection_select(:micropost, :typemicropost_id, Typemicropost.all, :id, :name, {prompt: true} ,{:class=>"form-control"}) %></div>
+  <div class="form-group">
+    <label>Title:</label><br>
+    <%= f.text_field :title, placeholder: "title document..", class: "form-control" %>
   </div>
-
+  <div class="form-group">
+    <label>Detail:</label><br>
+    <%= f.text_area :content, placeholder: "Compose new micropost...", class: "form-control",rows: "7"  %>
+  </div>
+  <div class="form-group">
+    <label>Choose file:</label>
+    <%= f.file_field :attachment , class: "form-control"%></p>
+  </div>
+  <div class="form-group">
+    <label for="">Choose picture:</label>
+    <%= f.file_field :picture, class: "form-control" %>
+  </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
-   <span class="picture">
-    <%= f.file_field :picture %>
-  </span>
 <% end %>
 <script type="text/javascript">
   $('#micropost_picture').bind('change', function() {
