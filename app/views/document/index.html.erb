@@ -1,29 +1,33 @@
+<%= provide :title, "Document" %>
 <div class="col-md-12">
   <% @document.each do |d| %>
-  <div class="col-sm-3 col-xs-12 document">
-    <div class="panel panel-default text-center">
+  <div class="col-sm-4 col-xs-12 document">
+    <div class="card">
       <div class="panel-heading">
-        <% if d.typemicropost.name == "Ngoai Ngu" %>
-          <%= image_tag 'ngoaingu.png', class: "image-document" %>
+        <% if d.picture.present? %>
+          <%= image_tag d.picture.url.to_s, class: "image-document" %>
         <% else %>
-          <%= image_tag 'laptrinh.png', class: "image-document" %>
+          <% if d.typemicropost.id  == 6 %>
+            <%= image_tag 'ngoaingu.png', class: "image-document" %>
+          <% else %>
+            <%= image_tag 'laptrinh.png', class: "image-document" %>
+          <% end %>
         <% end %>
       </div>
-      <div class="panel-body">
         <p class="content-document"><b><%= d.title %></b></p>
         <p>
           <% if d.user.admin? %>
-          <span>Admin</span>
+            <span class="role">Admin</span>
           <% else %>
-          <span>Member</span>
+            <span class="role">Member</span>
           <% end %>
         </p>
-      </div>
+        <%= rating_for d, :title, avg: true  %>
       <div class="panel-footer">
-        <%= link_to "detail",d, class: "btn btn-primary" %>
+        <%= link_to "detail",d, class: "btn btn-primary button" %>
       </div>
     </div>
   </div>
   <% end %>
 </div>
-<%= will_paginate @member %>
+<%= will_paginate @document %>

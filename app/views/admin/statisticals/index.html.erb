@@ -1,0 +1,6 @@
+
+<%= pie_chart @microposts.group(:typemicropost_id).count%>
+<br>
+<h3 style="text-align: center;">H1. Biểu đồ tính theo % số lượng tài liệu của từng loại </h3>
+<%= line_chart @users.group(:created_at).count %>
+<h3 style="text-align: center;">H2. Biểu đồ số lượng thành viên đăng ký theo từng ngày  </h3>

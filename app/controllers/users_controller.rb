@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action  :logged_in_user, only:[:edit,:update,:index,:destroy]
   before_action :correct_user, only:[:edit,:update]
   before_action :admin_user, only: [:destroy]
+
   def new
   	@user=User.new
   end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
   		flash[:info] = "please check your email to activate your acount."
   		redirect_to @user
   	else
-  		render 'new'
+  		render :new
   	end
   end
 
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
       flash[:success]="profile updated"
       redirect_to @user
     else
-      render "edit"
+      render :edit
     end
   end
 
@@ -48,10 +49,10 @@ class UsersController < ApplicationController
   	@user=User.find(params[:id])
   	if @user.destroy
   		flash[:success] = "delete successfully!"
-  		redirect_to users_url
   	else
-  		//
+  		flash[:success] = "delete gặp sự cố!"
   	end
+    redirect_to users_url
   end
 
   def following
@@ -68,8 +69,8 @@ class UsersController < ApplicationController
     render 'users/show_follow'
   end
 
-
   private
+
   def user_params
       params.require(:user).permit(:name, :email, :password,:password_confirmation, :picture)
   end
@@ -77,8 +78,5 @@ class UsersController < ApplicationController
   def correct_user
     @user=User.find(params[:id])
     redirect_to (root_url) unless current_user?(@user)
-  end
-  def admin_user
-    redirect_to(root_url) unless current_user.admin?
   end
 end

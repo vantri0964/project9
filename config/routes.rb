@@ -1,4 +1,8 @@
   Rails.application.routes.draw do
+  devise_for :users
+  post '/rate' => 'rater#create', :as => 'rate'
+  get 'sugests/index'
+  get 'reviews/create'
   namespace :admin do
     get 'shares/_menu'
   end
@@ -35,9 +39,12 @@
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy, :show]
   resources :relationships,       only: [:create, :destroy]
-  resources :document,            only: [:index, :show]
-
+  resources :document
   namespace :admin do
     resources :users
+    resources :shares
+    resources :statisticals
   end
+  resources :sugests
+  resources :reviews
 end

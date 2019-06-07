@@ -1,0 +1,40 @@
+<%= search_form_for @q, url: admin_shares_path do |f| %>
+  <div class="form-group col-md-4">
+    <%= f.label :title_or_content_cont %>
+    <%= f.search_field :title_or_content_cont, class: "form-control" %>
+    <br>
+    <%= f.submit "Search", class: "btn btn-success" %>
+  </div>
+<% end %>
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Picture</th>
+        <th>Title</th>
+        <th>Detail</th>
+        <th>Author</th>
+        <th>Control</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @microposts.each do |f| %>
+        <tr>
+          <td><%= f.id %></td>
+          <td><%= f.picture.url.to_s %></td>
+          <td><%= f.title %></td>
+          <td><%= f.content %></td>
+          <td><%= link_to  f.user.name, user_path(f.user) %></td>
+          <td>
+            <span>
+              <%= link_to "Delete", admin_share_path(f), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Update", admin_share_path(f), method: :put, class: "btn btn-info" %>
+            </span>
+          </td>
+        </tr>
+      <% end  %>
+    </tbody>
+  </table>
+</div>
+<%= will_paginate @microposts %>

@@ -1,9 +1,15 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    # devise :database_authenticatable, :registerable,
+    #      :recoverable, :rememberable, :validatable
+    ratyrate_rater
+    ratyrate_rateable :id
     has_many :microposts, dependent: :destroy
     has_many :active_relationships, class_name: "Relationship",
               foreign_key: "follower_id",
               dependent: :destroy
-
+    has_many :sugests
     has_many :passive_relationships, class_name: "Relationship",
               foreign_key: "followed_id",
               dependent: :destroy
@@ -23,8 +29,11 @@ class User < ApplicationRecord
 	  validates :password, length: { minimum: 6 },allow_nil:true
     enum activated: {activate: true, not_activate: false}
     scope :ordered_by_name, -> {order(name: :asc) }
-	  #validates :password_confirmation, presence: true
+    has_many :reviews
 
+    # has_many :microposts, through: :reviews
+	  validates :password_confirmation, presence: true
+    scope :search_user,  -> (name, email, max, min){where "1=1 #{name} #{email} #{max} #{min}"}
 	 def User.digest(string)
 	    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
 	                                                  BCrypt::Engine.cost
@@ -80,7 +89,7 @@ class User < ApplicationRecord
     end
 
     def feed
-    Micropost.where("user_id = ?", id)
+      Micropost.feed_all id
     end
 
     def follow other_user

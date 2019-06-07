@@ -14,6 +14,16 @@ module SessionsHelper
 			end
 		end
 	end
+
+	def admin_user
+    if logged_in?
+    return root_path unless current_user.admin?
+    else
+      flash[:danger] = "you are log in!"
+      redirect_to login_path
+    end
+  end
+
 	def current_user?(user)
 		user == current_user
 	end

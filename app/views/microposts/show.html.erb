@@ -1,30 +1,54 @@
 <div class="col-md-12">
-  <div class="col-sm-4 col-xs-12">
-    <div class="panel panel-default text-center">
-      <div class="panel-heading">
-         <%= image_tag 'user.jpg', class: "image-document" %>
-      </div>
-      <div class="panel-body">
-        <p><b><%= @showDoc.id %></b></p>
-        <p>
-          <% if @showDoc.user.admin? %>
-          <span>Admin</span>
-          <% else %>
-          <span>Member</span>
-          <% end %>
-        </p>
-        <p><%= @showDoc.content %></p>
-      </div>
-      <div class="panel-footer">
-        <h3>$19</h3>
-        <h4>per month</h4>
-        <%= link_to "download", @showDoc.attachment.url, download: 'data' if @showDoc.attachment? %>
+</div>
+<div class="container">
+  <div class="col-md-9">
+    <% if @showDoc.attachment.url.present? %>
+      <iframe src=<%= @showDoc.attachment.url %> width="800px" height="450px" style="border: none;"> </iframe>
+      <div class="col-md-6"><span><h3><span class="glyphicon glyphicon-hand-right "></span> <%= @showDoc.title %></h3></span></div>
+      <div class="col-md-3 col-md-offset-3"><i><%= @showDoc.created_at %></i></div>
+      <% if logged_in? %>
+        <span class="col-md-1">
+          <%= link_to "dowload", @showDoc.attachment.url, download: 'data', class: "btn btn-success"%>
+        </span>
+      <% else %>
+          <%= link_to "downnload", login_path,class: "btn btn-success", data:{confirm: "Bạn cần login để download?"} %>
+      <% end %>
+    <% end %>
+    <div class="col col-md-12">
+     <span class="col-md-5">
+        <%= social_share_button_tag(@showDoc.title, desc: @showDoc.title) %>
+     </span>
+      <div class="link_detail col-md-12">
+          <%= render "shared/detailmicropost" %>
       </div>
     </div>
   </div>
-  <div class="col-md-8">
-<% if @showDoc.attachment.url.present? %>
-    <iframe src=<%= @showDoc.attachment.url %> width="500px" height="600px" style="border: none;"> </iframe>
+  <div class="col-md-3">
+    <h4><b>Thông Tin User:</b></h4>
+    <% if @showDoc.user.picture? %>
+    <span><%= link_to  @showDoc.user.name, user_path(@showDoc.user) %></span>
+     <%= image_tag "#{@showDoc.user.picture.url}", alt: "blank",class: "img-circle user_header" %>
+    <% else %>
+       <div class="gravatar_edit user_header_not">
+          <%=link_to @showDoc.user.name, @showDoc.user %>
+          <%= gravatar_for @showDoc.user %>
+       </div>
     <% end %>
+    <% if logged_in? %>
+    Rating : <%= rating_for @showDoc,:title, star: 5,disable_after_rate: false , enable_half: true%>
+    Original Score: <%= rating_for @showDoc, :title, disable_after_rate: true, imdb_avg: true %>
+    <% end %>
+    <button class="btn btn-primary">Gửi phản hồi!</button>
   </div>
 </div>
+
+<div class="fb-comments" data-href="http://localhost:3000/" data-width="" data-numposts="5"></div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.3&appId=2138083689646887"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $(".link_detail").toggle();
+  });
+});
+</script>

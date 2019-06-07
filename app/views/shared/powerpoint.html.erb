@@ -1,0 +1,13 @@
+<%
+require 'ruby_powerpoint'
+
+deck = RubyPowerpoint::Presentation.new "specs/fixtures/sample.pptx"
+
+deck.slides.each do |slide|
+  slide.content # => ["Presentation Notes...", "12345"]
+  slide.title # => "Prsentation Header"
+  slide.images # => ["\xE3=\xA8h\x8E\x17\...."] Byte Stream
+  # Saving the image byte stream to a file:
+  File.open('temp.jpg', 'w'){|f| f.puts slide.images[0].read}
+end
+%>

@@ -1,18 +1,29 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_user
   before_action :load_user, except: %i(index)
-  def admin_user
-    if logged_in?
-    return root_path unless current_user.admin?
-    else
-      flash[:danger] = "you are log in!"
-      redirect_to login_path
-    end
-  end
+
   def index
     # @user = User.paginate(page: params[:page], per_page: 10)
-    user = search(params[:name], params[:email], params[:activated])
-    @user = user.paginate(page: params[:page], per_page: 10)
+    @name = "and 1=1"
+    @email ="and 1=1"
+    @min = "and 1=1"
+    @max = "and 1=1"
+    if params[:name].present?
+      @name ="and name like '%#{params[:name]}%'"
+    end
+    if params[:email].present?
+      @email ="and email like '% #{params[:email]} %'"
+    end
+    if params[:max].present?
+      @max ="and point < #{params[:max]}"
+    end
+    if params[:min].present?
+      @min = "and point > #{params[:min]}"
+    end
+    # user = search(params[:name], params[:email], params[:activated])
+    # @user = user.paginate(page: params[:page], per_page: 10)
+       @user = User.search_user(@name, @email, @min, @max).paginate(page: params[:page], per_page: 10)
+
   end
 
   def create
